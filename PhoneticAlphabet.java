@@ -67,12 +67,21 @@ public class PhoneticAlphabet implements ActionListener{
         frame.add(textField);
         frame.add(textField1);
         frame.setVisible(true);
+    }
 
-
+        public void getLetter(){
+            int minValue = 65;
+            int maxValue = 90;
+            int store = (int)Math.floor(Math.random() * (maxValue - minValue + 1) + minValue);
+            letter = String.valueOf((char)store);
+            textField1.setFont(myFont1);
+            textField1.setText(letter);
+            textField1.setBackground(Color.WHITE);
+        }
+        
 
 
 
         
     }
 
-}

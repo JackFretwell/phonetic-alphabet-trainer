@@ -46,8 +46,27 @@ public class PhoneticAlphabet implements ActionListener{
         alphabet.put("Y", "Yankee");
         alphabet.put("Z", "Zulu");
 
+        frame = new JFrame("Game Window");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(500, 500);
+        frame.setLayout(null);
 
+        textField = new JTextField();
+        textField.setBounds(60, 320, 340, 80);
+        textField.setFont(myFont);
+        textField.setHorizontalAlignment(JTextField.CENTER);
+        textField.addActionListener(this);
 
+        textField1 = new JTextField();
+        textField1.setBounds(60, 20, 340, 280);
+        textField1.setHorizontalAlignment(JTextField.CENTER);
+        textField1.setEditable(false);
+
+        getLetter();
+
+        frame.add(textField);
+        frame.add(textField1);
+        frame.setVisible(true);
 
 
 

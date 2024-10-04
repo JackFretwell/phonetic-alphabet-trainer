@@ -79,8 +79,77 @@ public class PhoneticAlphabet implements ActionListener{
             textField1.setBackground(Color.WHITE);
         }
         
+        public static void main(String[] args){
+            PhoneticAlphabet p = new PhoneticAlphabet();
+        }
 
+        public void actionPerformed(ActionEvent e){
+            if(e.getSource() == textField){
+                storedText = textField.getText();
+            }
 
+            String matchingWord = alphabet.get(letter);
+
+            if(storedText.equals(matchingWord)){
+                textField1.setFont(myFont2);
+                textField1.setBackground(Color.GREEN);
+                textField1.setText("Correct!");
+                SwingWorker<Void, Void> worker = new SwingWorker<>(){
+                    @Override
+                    protected Void doInBackground() throws Exception{
+                        Thread.sleep(2000);
+                        return null;
+                    }
+                
+
+                @Override
+                protected void done(){
+                    textField.setText("");
+                    getLetter();
+                }
+            };
+            worker.execute();
+
+        }
+        else{
+            textField1.setFont(myFont2);
+            textField1.setBackground(Color.RED);
+            textField1.setText("Incorrect!");
+
+            SwingWorker<Void, Void> worker = new SwingWorker<>() {
+                @Override
+                protected Void doInBackground() throws Exception{
+                    Thread.sleep(2000);
+                    return null;
+                }
+
+                @Override
+                protected void done(){
+                    textField1.setFont(myFont3);
+                    textField1.setBackground(Color.RED);
+
+                    textField1.setText("The correct answer was: " + matchingWord);
+                    SwingWorker<Void, Void> finalWorker = new SwingWorker<>(){
+                        @Override
+                        protected Void doInBackground() throws Exception {
+                            Thread.sleep(2000);
+                            return null;
+                        }
+
+                        @Override
+                        protected void done() {
+                            textField.setText("");
+                            getLetter();
+                        }
+                    };
+                    finalWorker.execute();
+                    
+                    }
+                
+            };
+            worker.execute();
+        }
+        }
 
         
     }
